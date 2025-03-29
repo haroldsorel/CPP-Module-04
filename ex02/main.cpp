@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haroldsorel <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: hsorel <hsorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:15:32 by haroldsorel       #+#    #+#             */
-/*   Updated: 2025/02/10 13:15:33 by haroldsorel      ###   ########.fr       */
+/*   Updated: 2025/03/29 20:42:17 by hsorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "Brain.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-void    delete_animals(Animal const **animals)
+void    delete_animals(Animal const **animals, int j)
 {
     int i;
 
     i = 0;
-    while (i < 20 && animals[i])
+    while (i <= j)
     {
         delete animals[i];
         i++;
@@ -33,20 +34,13 @@ int main()
     //Animal *a = new Animal;
     //Animal *a = new Dog;
 
-    std::cout << "Animal Construction :" << std::endl;
     const Animal *animals[20];
     std::cout << std::endl;
 
-    std::cout << "Dog Construction" << std::endl;
     int i = 0;
     while (i < 10)
     {
         animals[i] = new Dog;
-        if (animals[i] == nullptr)
-        {
-            delete_animals(animals);
-            return (1);
-        }
         i++;
     }
     std::cout << std::endl;
@@ -54,16 +48,11 @@ int main()
     while (i < 20)
     {
         animals[i] = new Cat;
-        if (animals[i] == nullptr)
-        {
-            delete_animals(animals);
-            return (1);
-        }
         i++;
     }
     std::cout << std::endl;
     std::cout << "DESTRUCTION" << std::endl;
-    delete_animals(animals);
+    delete_animals(animals, 19);
 
     std::cout << std::endl;
     std::cout << "CONSTRUCTION 2" << std::endl;

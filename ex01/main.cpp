@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haroldsorel <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: hsorel <hsorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:15:32 by haroldsorel       #+#    #+#             */
-/*   Updated: 2025/02/10 13:15:33 by haroldsorel      ###   ########.fr       */
+/*   Updated: 2025/03/29 20:41:26 by hsorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "Brain.hpp"
+
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-void    delete_animals(Animal const **animals)
+void    delete_animals(Animal const **animals, int j)
 {
     int i;
 
     i = 0;
-    while (i < 20 && animals[i])
+    while (i <= j)
     {
         delete animals[i];
         i++;
@@ -28,37 +28,24 @@ void    delete_animals(Animal const **animals)
 
 int main()
 {
-    std::cout << "Animal Construction :" << std::endl;
     const Animal *animals[20];
     std::cout << std::endl;
 
-    std::cout << "Dog Construction" << std::endl;
     int i = 0;
     while (i < 10)
     {
         animals[i] = new Dog;
-        if (animals[i] == nullptr)
-        {
-            delete_animals(animals);
-            return (1);
-        }
         i++;
     }
     std::cout << std::endl;
-    std::cout << "Cat Construction" << std::endl;
     while (i < 20)
     {
         animals[i] = new Cat;
-        if (animals[i] == nullptr)
-        {
-            delete_animals(animals);
-            return (1);
-        }
         i++;
     }
     std::cout << std::endl;
     std::cout << "DESTRUCTION" << std::endl;
-    delete_animals(animals);
+    delete_animals(animals, 19);
 
     std::cout << std::endl;
     std::cout << "CONSTRUCTION 2" << std::endl;
@@ -72,7 +59,6 @@ int main()
     dog1.set_ideas(5, "play");
     dog1.set_ideas(6, "food");
     dog2.set_ideas(99, "qwerty");
-    dog2.set_ideas(100, "qwerty");
     dog3.set_ideas(27, "water");
     dog3.set_ideas(89, "water");
     dog3.set_ideas(64, "water");
@@ -85,6 +71,12 @@ int main()
     std::cout << std::endl;
     std::cout << "DOG3 IDEAS" << std::endl;
     dog3.display_ideas();
+    std::cout << std::endl;
+    std::cout << "DOG1=DOG3" << std::endl;
+    dog1 = dog3;
+    std::cout << std::endl;
+    std::cout << "DOG1 IDEAS" << std::endl;
+    dog1.display_ideas();
     std::cout << std::endl;
 /*
     std::cout << std::endl;

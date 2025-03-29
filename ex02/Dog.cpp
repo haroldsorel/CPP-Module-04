@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haroldsorel <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: hsorel <hsorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 23:54:37 by haroldsorel       #+#    #+#             */
-/*   Updated: 2025/02/05 23:54:38 by haroldsorel      ###   ########.fr       */
+/*   Updated: 2025/03/29 19:55:03 by hsorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "Dog.hpp"
 
 Dog::Dog(void)
@@ -22,7 +23,10 @@ Dog::Dog(void)
 
 Dog::Dog(Dog const &copy)
 {
-    *this = copy;
+    this->_type = copy._type;
+    this->_brain = new Brain(*copy._brain);
+    if (this->_brain == nullptr)
+        exit(1);
     std::cout << "Dog Object Copied" << std::endl;
 }
    
@@ -40,10 +44,10 @@ Dog &Dog::operator=(Dog const &src)
         return (*this);
     }
     this->_type = src._type;
-    this->_brain = new Brain;
+    delete this->_brain;
+    this->_brain = new Brain(*src._brain);
     if (this->_brain == nullptr)
         exit(1);
-    *(this->_brain) = *(src._brain);
     return (*this);
 }
 

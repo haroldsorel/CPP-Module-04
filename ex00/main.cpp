@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haroldsorel <marvin@42.fr>                 +#+  +:+       +#+        */
+/*   By: hsorel <hsorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:02:58 by haroldsorel       #+#    #+#             */
-/*   Updated: 2025/02/05 19:02:59 by haroldsorel      ###   ########.fr       */
+/*   Updated: 2025/03/29 20:53:43 by hsorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "Animal.hpp"
+
 #include "WrongAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
@@ -38,7 +38,7 @@ int main()
     std::cout << "Wrong Animals" <<std::endl;
     std::cout << std::endl;
     const WrongAnimal* wrongmeta = new WrongAnimal();
-    const WrongCat* wrongi = new WrongCat();
+    const WrongAnimal* wrongi = new WrongCat();
     std::cout << wrongi->getType() << " " << std::endl;
     wrongi->makeSound(); //will output the wronganimal sound!
     wrongmeta->makeSound();
